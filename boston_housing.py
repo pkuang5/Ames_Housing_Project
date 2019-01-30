@@ -1,43 +1,22 @@
+import numpy as np
+import seaborn as sns; sns.set()
 import pandas as pd
+import matplotlib.pyplot as plt
+
+
 train = pd.read_csv("all/train.csv")
 print(train.head())
 test = pd.read_csv("all/test.csv")
 print(test.head())
+#plt.figure()
+#ax = sns.scatterplot(x = train["OverallQual"], y = train["SalePrice"]).set_title("Overall Quality bitch")
+#plt.figure()
+#ax = sns.stripplot(x=train["MSSubClass"], y=train["SalePrice"]) #attribute not tht important
+#plt.figure()
+#ax = sns.stripplot(x=train["MSSubClass"], y=train["SalePrice"]) 
+names = list(train)
 
-train["Expensive"] = float('NaN')
-train["Expensive"][train["SalePrice"] < train["SalePrice"].median()] = 0
-train["Expensive"][train["SalePrice"] >= train["SalePrice"].median()] = 1
-#print(train["Expensive"].value_counts(normalize = True))
-print("MsSubClass: 20")
-print(train["Expensive"][train["MSSubClass"] == 20].value_counts(normalize = True))
-print("MsSubClass: 30")
-print(train["Expensive"][train["MSSubClass"] == 30].value_counts(normalize = True))
-print("MsSubClass: 40")
-print(train["Expensive"][train["MSSubClass"] == 40].value_counts(normalize = True))
-print("MsSubClass: 45")
-print(train["Expensive"][train["MSSubClass"] == 45].value_counts(normalize = True))
-print("MsSubClass: 50")
-print(train["Expensive"][train["MSSubClass"] == 50].value_counts(normalize = True))
-print("MsSubClass: 60")
-print(train["Expensive"][train["MSSubClass"] == 60].value_counts(normalize = True))
-print("MsSubClass: 70")
-print(train["Expensive"][train["MSSubClass"] == 70].value_counts(normalize = True))
-print("MsSubClass: 75")
-print(train["Expensive"][train["MSSubClass"] == 75].value_counts(normalize = True))
-print("MsSubClass: 80")
-print(train["Expensive"][train["MSSubClass"] == 80].value_counts(normalize = True))
-print("MsSubClass: 85")
-print(train["Expensive"][train["MSSubClass"] == 85].value_counts(normalize = True))
-print("MsSubClass: 90")
-print(train["Expensive"][train["MSSubClass"] == 90].value_counts(normalize = True))
-print("MsSubClass: 120")
-print(train["Expensive"][train["MSSubClass"] == 120].value_counts(normalize = True))
-print("MsSubClass: 150")
-print(train["Expensive"][train["MSSubClass"] == 150].value_counts(normalize = True))
-print("MsSubClass: 160")
-print(train["Expensive"][train["MSSubClass"] == 160].value_counts(normalize = True))
-print("MsSubClass: 180")
-print(train["Expensive"][train["MSSubClass"] == 180].value_counts(normalize = True))
-print("MsSubClass: 190")
-print(train["Expensive"][train["MSSubClass"] == 190].value_counts(normalize = True))
+for i in names:
+    plt.figure()
+    ax = sns.stripplot(x=train[i], y=train["SalePrice"]) 
 
