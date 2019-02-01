@@ -8,15 +8,19 @@ train = pd.read_csv("all/train.csv")
 print(train.head())
 test = pd.read_csv("all/test.csv")
 print(test.head())
-#plt.figure()
-#ax = sns.scatterplot(x = train["OverallQual"], y = train["SalePrice"]).set_title("Overall Quality bitch")
-#plt.figure()
-#ax = sns.stripplot(x=train["MSSubClass"], y=train["SalePrice"]) #attribute not tht important
-#plt.figure()
-#ax = sns.stripplot(x=train["MSSubClass"], y=train["SalePrice"]) 
+
 names = list(train)
+print(len(names))
 
 for i in names:
     plt.figure()
     ax = sns.stripplot(x=train[i], y=train["SalePrice"]) 
+#Id 0
+#LotFrontage on line  graph 3
+#LotArea on line graph 4
+#Street irrelevant 5
+#Alley irrelevant 6
+#LotShape irrevlevant 7
+#LandContour 8
 
+    
