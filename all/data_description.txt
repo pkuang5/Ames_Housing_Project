@@ -64,7 +64,7 @@ Utilities: Type of utilities available
        NoSeWa	Electricity and Gas Only
        ELO	Electricity only	
 	
-LotConfig: Lot configuration
+LotConfig: Lot configuration 
 
        Inside	Inside lot
        Corner	Corner lot
