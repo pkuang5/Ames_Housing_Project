@@ -4,6 +4,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from sklearn import tree
 from scipy import stats
+from sklearn.ensemble import RandomForestClassifier
 
 #reades and imports train and test dataframe 
 train = pd.read_csv("all/train.csv")
@@ -77,27 +78,53 @@ target = train_copy["SalePrice"].values
 #creating features  set (all attributes except Sale Price)
 features = train_copy[names].values
         
-# Fit your first decision tree: my_tree
-my_tree = tree.DecisionTreeClassifier()
-my_tree = my_tree.fit(features, target)
+## Fit your first decision tree: my_tree
+#my_tree = tree.DecisionTreeClassifier()
+#my_tree = my_tree.fit(features, target)
+## Look at the importance and score of the included features
+##print(my_tree.feature_importances_)
+##print(my_tree.score(features, target))
+#
+##Control overfitting by setting "max_depth" to 10 and "min_samples_split" to 5 : my_tree_two
+#max_depth = 10
+#min_samples_split = 5
+#my_tree_two = tree.DecisionTreeClassifier(max_depth = 10, min_samples_split = 5, random_state = 1)
+#my_tree_two = my_tree_two.fit(features, target)
+## Look at the importance and score of the included features
+#print(my_tree_two.feature_importances_)
+#print(my_tree_two.score(features, target))
+#
+#
+## Extract the features from the test set
+#test_features = test[names].values
+#
+## Make your prediction using the test set
+#my_prediction = my_tree_two.predict(test_features)
+#
+## Create a data frame with two columns: Id & SalePrice. SalePrice contains your predictions
+#Id =np.array(test["Id"]).astype(int)
+#my_solution = pd.DataFrame(my_prediction, Id, columns = ["SalePrice"])
+#print(my_solution)
+#
+## Check that your data frame has 418 entries
+#print(my_solution.shape)
+#
+## Write your solution to a csv file with the name my_solution.csv
+#my_solution.to_csv("my_solution_one.csv", index_label = ["Id"])
 
-# Look at the importance and score of the included features
-print(my_tree.feature_importances_)
-print(my_tree.score(features, target))
+features_forest = train[names]
+forest  = RandomForestClassifier(max_depth = 10, min_samples_split = 2, n_estimators = 100, random_state = 1)
+my_forest = forest.fit(features_forest, target)
 
-# Extract the features from the test set
+print(my_forest.score(features_forest, target))
+
 test_features = test[names].values
-
-# Make your prediction using the test set
-my_prediction = my_tree.predict(test_features)
+pred_forest = my_forest.predict(test_features)
 
 # Create a data frame with two columns: Id & SalePrice. SalePrice contains your predictions
 Id =np.array(test["Id"]).astype(int)
-my_solution = pd.DataFrame(my_prediction, Id, columns = ["SalePrice"])
+my_solution = pd.DataFrame(pred_forest, Id, columns = ["SalePrice"])
 print(my_solution)
-
-# Check that your data frame has 418 entries
-print(my_solution.shape)
-
 # Write your solution to a csv file with the name my_solution.csv
-my_solution.to_csv("my_solution_one.csv", index_label = ["Id"])
+my_solution.to_csv("my_solution_two.csv", index_label = ["Id"])
+
